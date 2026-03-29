@@ -1326,6 +1326,8 @@ select {
   padding: 28px 20px 26px;
   scrollbar-width: thin;
   justify-content: center;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }
 
 .combined-hand-row > * + * {
@@ -1369,6 +1371,7 @@ select {
   transform: translateY(var(--card-lift, 0px)) rotate(var(--card-rotate, 0deg));
   transform-origin: center bottom;
   z-index: calc(var(--card-index, 0) + 1);
+  scroll-snap-align: start;
 }
 
 .playing-card.playable {
@@ -1741,7 +1744,32 @@ select {
   }
 
   .combined-hand-row > * + * {
-    margin-left: -46px;
+    margin-left: -16px;
+  }
+
+  .combined-hand-row {
+    justify-content: flex-start;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .playing-card {
+    width: 84px;
+    height: 128px;
+    transform: none;
+    z-index: auto;
+  }
+
+  .playing-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .card-value {
+    font-size: 2rem;
+  }
+
+  .card-suit.large {
+    font-size: 2.3rem;
   }
 
   .table-decor.left,
@@ -1819,12 +1847,13 @@ select {
   }
 
   .playing-card {
-    width: 92px;
-    height: 140px;
+    width: 74px;
+    height: 112px;
+    padding: 10px;
   }
 
   .combined-hand-row > * + * {
-    margin-left: -38px;
+    margin-left: -8px;
   }
 
   .combined-hand-row {
@@ -1834,11 +1863,22 @@ select {
   }
 
   .card-value {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .card-suit.large {
-    font-size: 2.6rem;
+    font-size: 2rem;
+  }
+
+  .card-corner {
+    font-size: 0.95rem;
+  }
+
+  .playable-badge {
+    right: 6px;
+    top: 6px;
+    padding: 4px 7px;
+    font-size: 0.58rem;
   }
 }
 
