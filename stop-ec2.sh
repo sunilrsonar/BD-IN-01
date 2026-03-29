@@ -20,11 +20,13 @@ fi
 
 if kill -0 "$APP_PID" 2>/dev/null; then
   echo "Stopping Badam Satti process ($APP_PID)..."
+  pkill -TERM -P "$APP_PID" 2>/dev/null || true
   kill "$APP_PID"
   sleep 1
 
   if kill -0 "$APP_PID" 2>/dev/null; then
     echo "Process is still running. Sending SIGKILL..."
+    pkill -KILL -P "$APP_PID" 2>/dev/null || true
     kill -9 "$APP_PID"
   fi
 

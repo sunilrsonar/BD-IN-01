@@ -59,7 +59,7 @@ echo "Building client..."
 npm --prefix "$CLIENT_DIR" run build
 
 echo "Starting server on $HOST:$PORT ..."
-nohup env HOST="$HOST" PORT="$PORT" npm --prefix "$SERVER_DIR" start > "$LOG_DIR/app.log" 2>&1 &
+nohup env HOST="$HOST" PORT="$PORT" node "$SERVER_DIR/server.js" > "$LOG_DIR/app.log" 2>&1 &
 APP_PID=$!
 echo "$APP_PID" > "$PID_FILE"
 
