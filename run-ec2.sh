@@ -15,6 +15,22 @@ mkdir -p "$LOG_DIR"
 
 echo "Preparing Badam Satti for EC2..."
 
+if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
+  echo "Node.js and npm are required but not installed on this machine."
+  echo
+  echo "For Ubuntu on EC2, run:"
+  echo "  sudo apt update"
+  echo "  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
+  echo "  sudo apt-get install -y nodejs"
+  echo
+  echo "Then verify:"
+  echo "  node -v"
+  echo "  npm -v"
+  echo
+  echo "After that, run ./run-ec2.sh again."
+  exit 1
+fi
+
 if [[ -f "$PID_FILE" ]]; then
   OLD_PID="$(cat "$PID_FILE")"
   if [[ -n "$OLD_PID" ]] && kill -0 "$OLD_PID" 2>/dev/null; then
